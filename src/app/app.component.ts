@@ -37,6 +37,7 @@ export class AppComponent implements OnInit, OnDestroy{
       takeUntil(this._destroy)).subscribe(x =>{
         this.isUserLoggedIn = this.authService.instance.getAllAccounts().length>0
         this.azureAdDemoservice.isUserLoggedIn.next(this.isUserLoggedIn);
+        console.log(this.authService.instance.getAllAccounts()[0]);
       })
   }
 

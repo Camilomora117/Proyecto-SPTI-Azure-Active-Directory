@@ -6,6 +6,10 @@ import { MsalGuard } from '@azure/msal-angular';
 
 
 const routes: Routes = [
+  {
+    path: 'profile',
+    component: ProfileComponent
+  }
 ];
 
 const isIframe = window !== window.parent && !window.opener;
