@@ -1,56 +1,40 @@
-import { Component, Inject , OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
-import { InteractionStatus, RedirectRequest } from '@azure/msal-browser';
-import { RedirectClient } from '@azure/msal-browser/dist/internals';
-import { RedirectParams } from '@azure/msal-browser/dist/interaction_handler/RedirectHandler';
-import { environment } from 'src/environments/environment';
-import { AzureAdDemoService } from 'src/app/azure-ad-demo.service';
-import { MsalBroadcastService, MsalGuardConfiguration, MsalService, MSAL_GUARD_CONFIG } from '@azure/msal-angular';
-import { filter, Subject, takeUntil } from 'rxjs';
+import { MsalService} from '@azure/msal-angular';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy{
+export class AppComponent implements OnInit {
   title = 'prueba';
-  isUserLoggedIn: boolean = false;
-  private readonly _destroy = new Subject<void>();
 
-  constructor(
-  @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig:MsalGuardConfiguration,
-  private msalBroadCastService: MsalBroadcastService,
-  private authService: MsalService,
-  private azureAdDemoservice: AzureAdDemoService,
-  ){}
-
-  ngOnDestroy(): void {
-    this._destroy.next(undefined);
-    this._destroy.complete();
+  constructor(private msalService: MsalService){
+    
   }
 
-  ngOnInit(){
-    this.msalBroadCastService.inProgress$.pipe(
-      filter((interactionStatus: InteractionStatus) =>
-      interactionStatus==InteractionStatus.None),
-      takeUntil(this._destroy)).subscribe(x =>{
-        this.isUserLoggedIn = this.authService.instance.getAllAccounts().length>0
-        this.azureAdDemoservice.isUserLoggedIn.next(this.isUserLoggedIn);
-        console.log(this.authService.instance.getAllAccounts()[0]);
-      })
+  ngOnInit(): void {
+      this.msalService.instance.handleRedirectPromise().then(
+        res => {
+          if (res != null && res.account != null) {
+            this.msalService.instance.setActiveAccount(res.account)
+          }
+        }
+      )
   }
 
-login(){
-  if(this.msalGuardConfig.authRequest){
-    this,this.authService.loginRedirect({...this.msalGuardConfig.authRequest} as RedirectRequest)
-  }else{
-    this.authService.loginRedirect();
+  isLoggedIn() : boolean{
+    console.log("logeado " + JSON.stringify(this.msalService.instance.getActiveAccount()))
+    return this.msalService.instance.getActiveAccount() != null
   }
-}
-  
-logout(){ 
-  this.authService.logoutRedirect({postLogoutRedirectUri: environment.postLogoutUrl});
-}
+ 
+  login(){
+    this.msalService.loginRedirect();
+  }
+    
+  logout(){ 
+    this.msalService.logoutRedirect();
+  }
 
 }

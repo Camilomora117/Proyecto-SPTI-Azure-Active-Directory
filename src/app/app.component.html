@@ -4,10 +4,12 @@
 
 <div class="header">
   <label>PROYECTO AZURE</label>
+  <script>
+  </script>
   <div id="inicio">
-      <button class="sinborde" *ngIf="!isUserLoggedIn" (click)="login()">Iniciar sesión</button>
-      <button class="sinborde" *ngIf="isUserLoggedIn" (click)="logout()">Cerrar sesión</button>
+      <button class="sinborde" *ngIf="!isLoggedIn()" (click)="login()">Iniciar sesión</button>
+      <button class="sinborde" *ngIf="isLoggedIn()" (click)="logout()">Cerrar sesión</button>
   </div>
 </div>
 
-<router-outlet *ngIf="isUserLoggedIn" ></router-outlet>
+<router-outlet *ngIf="isLoggedIn()" ></router-outlet>

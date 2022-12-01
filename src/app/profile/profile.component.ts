@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'router-outlet',
   templateUrl: './profile.component.html',
