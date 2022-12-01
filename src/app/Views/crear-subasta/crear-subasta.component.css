@@ -1,0 +1,103 @@
+#header{
+    width: 100%;
+    background-color: #b6d7a8;
+    display: grid;
+    grid-template-columns:20% 70% 10%;
+}
+
+#botones{
+    display: flex;
+    justify-content: right;
+}
+
+#usuario{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#cuerpo{
+    background-color: #ffe49c;
+}
+
+.sinborde{
+    border: 0ch;
+    border-radius: 12px;
+    background-color: transparent;
+    margin: 10px;
+}
+
+.sinborde:hover{
+    background-color: #719164;
+}
+
+#informacion{
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+#subinfo{
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+}
+
+#subinfo input{
+    width: 80%;
+    height: 35%;
+}
+
+#subinfo select{
+    width: 80%;
+    height: 35%;
+}
+
+#foto{
+    margin: 20px;
+    width: 400px;
+    height: 300px;
+}
+
+#descripcion{
+    margin-left: 5%;
+    width: 80%;
+}
+
+.barra{
+    font-family: "Font Awesome 5 Free";
+    font-size: 950;
+}
+
+#tiempoduracion{
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+#botones2{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+#botoncrear{
+    display: flex;
+    justify-content: right;
+}
+
+.redondeado{
+    border-radius: 12px;
+    border-color: gray;
+    background-color: #ffe49c;
+}
+
+.redondeado:hover{
+    background-color: #f6cb56;
+}
+
+.margin{
+    margin: 15px;
+    margin-bottom: 30px;
+}
+
+mat-slider {
+    width: 60%;
+  }

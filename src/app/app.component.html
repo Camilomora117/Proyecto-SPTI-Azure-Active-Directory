@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<div class="header">
+  <label>El Gran Postor</label>
+  <div id="inicio">
+      <button class="sinborde" *ngIf="!isUserLoggedIn">Registrarse</button>
+      <b>|</b>
+      <button class="sinborde" *ngIf="!isUserLoggedIn" (click)="login()">Iniciar sesión</button>
+      <button class="sinborde" *ngIf="isUserLoggedIn" (click)="logout()">Cerrar sesión</button>
+  </div>
+</div>
+<router-outlet></router-outlet>

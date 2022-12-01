@@ -1,0 +1,16 @@
+.header{
+    width: 100%;
+    background-color: #b6d7a8;
+    display: grid;
+    grid-template-columns:1fr 1fr;
+}
+
+#inicio{
+    display: flex;
+    justify-content: right;
+}
+
+.sinborde{
+    border: 0ch;
+    background-color: transparent;
+}
