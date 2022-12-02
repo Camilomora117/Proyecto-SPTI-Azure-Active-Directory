@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MsalService } from '@azure/msal-angular';
 
 
 @Component({
@@ -8,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() {  }
+  constructor(private msalService: MsalService){
+    
+  }
+
+  idAdmin(): boolean{
+    return this.msalService.instance.getActiveAccount().name == "Juju Tu papa"
+  }
 
   ngOnInit(): void {
   }

@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 
 import { MsalService} from '@azure/msal-angular';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -25,8 +26,7 @@ export class AppComponent implements OnInit {
   }
 
   isLoggedIn() : boolean{
-    console.log("logeado " + JSON.stringify(this.msalService.instance.getActiveAccount()))
-    return this.msalService.instance.getActiveAccount() != null
+    return (this.msalService.instance.getAllAccounts().length != 0)
   }
  
   login(){
